@@ -27,6 +27,9 @@ namespace STATE_PrepaidKartica
         private void btnAktiviraj_Click(object sender, EventArgs e)
         {
             _kartica.Aktiviraj();
+
+            txtIznos.Text = _kartica.getCardMoney().ToString();
+            txtStatus.Text = _kartica.getState().ToString();
         }
 
         private void btnUplati_Click(object sender, EventArgs e)
@@ -34,12 +37,19 @@ namespace STATE_PrepaidKartica
             double iznosUplate = double.Parse(txtIznosUplate.Text);
             _kartica.Uplati(iznosUplate);
             txtIznosUplate.Clear();
+
+            txtIznos.Text = _kartica.getCardMoney().ToString();
+            txtStatus.Text = _kartica.getState().ToString();
         }
 
         private void btnIsplati_Click(object sender, EventArgs e)
         {
             double iznosIsplate = double.Parse(txtIznosIsplate.Text);
             _kartica.Isplati(iznosIsplate);
+            
+            txtIznos.Text = _kartica.getCardMoney().ToString();
+            txtStatus.Text = _kartica.getState().ToString();
+
             txtIznosIsplate.Clear();
         }
     }

@@ -42,5 +42,15 @@ namespace STATE_PrepaidKartica
                 StateManager.MakeTransition(ActivitationEvent.NotEnoughMoney);
             }
         }
+
+        public double getCardMoney()
+        {
+            return Iznos;
+        }
+
+        public ProjectState getState()
+        {
+            return StateManager.CurrentState;
+        }
     }
 }
