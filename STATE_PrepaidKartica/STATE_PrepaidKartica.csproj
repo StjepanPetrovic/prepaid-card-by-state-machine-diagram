@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivitationEvent.cs" />
     <Compile Include="PrepaidForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +56,7 @@
     </Compile>
     <Compile Include="PrepaidKartica.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PrepaidForm.resx">
       <DependentUpon>PrepaidForm.cs</DependentUpon>
