@@ -22,6 +22,8 @@ namespace STATE_PrepaidKartica
         {
             _kartica = new PrepaidKartica("HR12312414213");
             txtSerijskiBroj.Text = _kartica.SerijskiBroj;
+
+            refreshButtons();
         }
 
         private void btnAktiviraj_Click(object sender, EventArgs e)
@@ -30,6 +32,8 @@ namespace STATE_PrepaidKartica
 
             txtIznos.Text = _kartica.getCardMoney().ToString();
             txtStatus.Text = _kartica.getState().ToString();
+
+            refreshButtons();
         }
 
         private void btnUplati_Click(object sender, EventArgs e)
@@ -40,6 +44,8 @@ namespace STATE_PrepaidKartica
 
             txtIznos.Text = _kartica.getCardMoney().ToString();
             txtStatus.Text = _kartica.getState().ToString();
+
+            refreshButtons();
         }
 
         private void btnIsplati_Click(object sender, EventArgs e)
@@ -50,7 +56,18 @@ namespace STATE_PrepaidKartica
             txtIznos.Text = _kartica.getCardMoney().ToString();
             txtStatus.Text = _kartica.getState().ToString();
 
+            refreshButtons();
+            
             txtIznosIsplate.Clear();
+        }
+
+        private void refreshButtons()
+        {
+            ProjectState state = _kartica.StateManager.CurrentState;
+
+            btnAktiviraj.Enabled = state == ProjectState.NotActive;
+            btnIsplati.Enabled = state == ProjectState.Active;
+            btnUplati.Enabled = state == ProjectState.Active || state == ProjectState.NotEnoughMoney;
         }
     }
 }
