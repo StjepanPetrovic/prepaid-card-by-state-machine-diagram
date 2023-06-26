@@ -20,17 +20,27 @@ namespace STATE_PrepaidKartica
 
         public void Aktiviraj()
         {
+            StateManager.MakeTransition(ActivitationEvent.Activation);
             Iznos = 100;
         }
 
         public void Uplati(double iznosUplate)
         {
+            StateManager.MakeTransition(ActivitationEvent.Payment);
             Iznos += iznosUplate;
         }
 
         internal void Isplati(double iznosIsplate)
         {
+            if (Iznos - iznosIsplate >= 0)
+            {
+                StateManager.MakeTransition(ActivitationEvent.EnoughMoney);
             Iznos -= iznosIsplate;
+        }
+            else
+            {
+                StateManager.MakeTransition(ActivitationEvent.NotEnoughMoney);
+            }
         }
     }
 }
