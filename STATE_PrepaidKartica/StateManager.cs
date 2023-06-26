@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace STATE_PrepaidKartica
 {
-    internal class StateManager
+    public class StateManager
     {
         public ProjectState CurrentState { get; set; }
         private Dictionary<Transition, ProjectState> AllowedTransition { get; set; }
@@ -28,7 +28,7 @@ namespace STATE_PrepaidKartica
             AllowedTransition.Add(new Transition(ProjectState.NotEnoughMoney, ActivitationEvent.Payment), ProjectState.Active);
         }
 
-        public void MakeTransition(ActivitationEvent activitationEvent)
+        public ProjectState MakeTransition(ActivitationEvent activitationEvent)
         {
             Transition transition = new Transition(CurrentState, activitationEvent);
             ProjectState resultingState;
@@ -39,6 +39,8 @@ namespace STATE_PrepaidKartica
             }
 
             CurrentState = resultingState;
+
+            return resultingState;
         }
 
         public override string ToString()
